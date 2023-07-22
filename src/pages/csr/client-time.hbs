@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/style.css">
+    <title>giveme current time</title>
+  </head>
+  <body>
+    <header>
+      <h2>
+        Server Side Rendering (SSR)
+      </h2>
+      <nav>
+        <ul>
+          <li><a href="/">🔙Move back</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <span>Client Time : </span>
+      <span id="time">?</span>
+    </main>
+    <script>
+      const getFormattedCurrentTime = () => {
+        const date = new Date()
+
+        const dateStr = [
+          date.getFullYear(), 
+          date.getMonth() + 1,
+          date.getDate(),
+        ].map(String).map(s => s.padStart(2, '0')).join('/')
+
+        const timeStr = [
+          date.getHours(), 
+          date.getMinutes(),
+          date.getSeconds(),
+        ].map(String).map(s => s.padStart(2, '0')).join(':')
+
+        return [dateStr, timeStr].join(' ')
+      }
+
+      window.addEventListener('load', () => {
+        const time = getFormattedCurrentTime()
+        document.getElementById('time').innerText = time
+      })
+    </script>
+  </body>
+</html>
