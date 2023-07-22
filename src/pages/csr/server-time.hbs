@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/style.css">
+    <title>giveme current time</title>
+  </head>
+  <body>
+    <header>
+      <h2>
+        Server Side Rendering (SSR)
+      </h2>
+      <nav>
+        <ul>
+          <li><a href="/">🔙Move back</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <span>Server Time : </span>
+      <span id="time">?</span>
+    </main>
+    <script>
+      window.addEventListener('load', async () => {
+        const time = await fetch("/api/server-time")
+          .then((response) => response.json())
+          .then(response => response.time)
+        document.getElementById('time').innerText = time
+      })
+    </script>
+  </body>
+</html>
